@@ -1,14 +1,22 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
+import React, { useState } from 'react';
+
 const CurrencyForm = () => {
-    const { expenses } = useContext(AppContext);
-    const totalExpenses = expenses.reduce((total, item) => {
-        return (total += item.cost);
-    }, 0);
+    const [action, setAction] = useState('');
+
     return (
-        <div className='alert alert-primary'>
-            <span>Spent so far: £{totalExpenses}</span>
-        </div>
+
+        <select class="form-select" id="inputGroupSelect02" 
+        onChange={(event) => setAction(event.target.value)}
+        style={{ backgroundColor: '#98e49c', color:'white' }}>
+            <option style={{ color:'black' }}
+            value="$" name="Add">$ Dollar</option>
+            <option style={{ color:'black' }}
+            value="£" name="Reduce">£ Pound</option>
+            <option style={{ color:'black' }}
+            value="€" name="Reduce">€ Euro</option>
+            <option style={{ color:'black' }}
+            value="₹" name="Reduce">₹ Rupee</option>
+        </select>
     );
 };
 export default CurrencyForm;
